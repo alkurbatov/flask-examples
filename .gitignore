@@ -1,0 +1,13 @@
+# IDE - VSCode
+.vscode/*
+!.vscode/launch.json
+
+# OS X trash
+.DS_Store
+
+# Python files
+*.py[cod]
+*__pycache__
+
+# Uploaded files
+*.import
