@@ -23,6 +23,14 @@
             "debugOptions": [
                 "RedirectOutput"
             ]
-        }
+        },
+        {
+            "name": "Flask file download example",
+            "type": "pythonExperimental",
+            "request": "launch",
+            "program": "${workspaceFolder}/gevent-file-download/app.py",
+            "gevent": true,
+            "stopOnEntry": false,
+        },
     ]
 }
