@@ -2,6 +2,9 @@
 .vscode/*
 !.vscode/launch.json
 
+# Typings
+.mypy_cache/
+
 # OS X trash
 .DS_Store
 
@@ -11,3 +14,6 @@
 
 # Uploaded files
 *.import
+
+# Test file serving folder
+static/
