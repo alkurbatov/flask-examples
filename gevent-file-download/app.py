@@ -1,4 +1,4 @@
-"""A simple example of handling file downloads using Flask + Gevent
+"""A simple example of handling large file downloads using Flask + Gevent
 in nonblocking manner.
 
 To test the example prepare the test data:
@@ -18,6 +18,7 @@ monkey.patch_all()
 import sys
 
 import flask
+from gevent.fileobject import FileObjectThread
 from gevent.pywsgi import WSGIServer
 
 APP = flask.Flask('gevent-downloader')
@@ -25,8 +26,10 @@ APP = flask.Flask('gevent-downloader')
 
 def file_stream(path, chunk_size=16*1024*1024):
     with open(path, 'rb') as src:
+        wrapper = FileObjectThread(src, 'rb')
+
         while True:
-            data = src.read(chunk_size)
+            data = wrapper.read(chunk_size)
             if not data:
                 return
 
