@@ -24,7 +24,12 @@ from gevent.pywsgi import WSGIServer
 APP = flask.Flask('gevent-downloader')
 
 
-def file_stream(path, chunk_size=16*1024*1024):
+# NOTE (alkurbatov): The chunk size is taken from my experience,
+# fill free to adjust it to your needs.
+# However, don't forget that large chunks could significantly reduce
+# the download speed (buffer allocation takes some time and gEvent also
+# spends some time reading the data).
+def file_stream(path, chunk_size=512*1024):
     with open(path, 'rb') as src:
         wrapper = FileObjectThread(src, 'rb')
 
